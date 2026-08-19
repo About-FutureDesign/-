@@ -1,0 +1,106 @@
+/* ===== Lightbox photos ===== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 8, 8, .93);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .25s ease;
+  z-index: 999;
+}
+.lightbox.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.lightbox .lb-img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, .5);
+  border-radius: 4px;
+  user-select: none;
+}
+.lightbox .lb-close,
+.lightbox .lb-prev,
+.lightbox .lb-next {
+  position: absolute;
+  background: rgba(255, 255, 255, .08);
+  border: 1px solid rgba(255, 255, 255, .25);
+  color: #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 1.7rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s ease, transform .2s ease;
+}
+.lightbox .lb-close:hover,
+.lightbox .lb-prev:hover,
+.lightbox .lb-next:hover {
+  background: rgba(255, 255, 255, .2);
+}
+.lightbox .lb-close { top: 20px; right: 20px; }
+.lightbox .lb-prev { left: 20px; top: 50%; transform: translateY(-50%); }
+.lightbox .lb-next { right: 20px; top: 50%; transform: translateY(-50%); }
+.lightbox .lb-prev:hover, .lightbox .lb-next:hover { transform: translateY(-50%) scale(1.06); }
+.lightbox .lb-counter {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: .9rem;
+  letter-spacing: .05em;
+  opacity: .75;
+}
+@media (max-width: 640px) {
+  .lightbox .lb-prev, .lightbox .lb-next, .lightbox .lb-close {
+    width: 40px; height: 40px; font-size: 1.3rem;
+  }
+  .lightbox .lb-close { top: 10px; right: 10px; }
+  .lightbox .lb-prev { left: 6px; }
+  .lightbox .lb-next { right: 6px; }
+}
+
+/* Le curseur "zoom" est ajouté en JS sur les images de galerie */
+[data-gallery] { cursor: zoom-in; }
+
+/* ===== Section vidéo ===== */
+.video-section { padding: 2rem 0 0; }
+.video-section .block-head { margin-bottom: 1rem; }
+.video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #111;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.video-frame.is-empty::after {
+  content: "Vidéo à venir";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, .55);
+  font-size: 1rem;
+  letter-spacing: .05em;
+  background: repeating-linear-gradient(45deg, #161616, #161616 10px, #1c1c1c 10px, #1c1c1c 20px);
+}
